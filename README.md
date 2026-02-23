@@ -67,8 +67,9 @@ pip install -r requirements.txt
 
 
 ### Quick Start - Full ML Setup (Complete Pipeline) using Python Terminal
+## Note - a 100,000 simulation dataset is already included in the data folder. Skip to step #2 if that is sufficient.
 
-# 1. Generate training data (currently set to 100,000 simulations - ~3hrs - line 11+143)
+# 1. Generate training data (currently set to 100,000 simulations - ~3hrs - lines 11+143)
 cd scripts
 python 01_generate_training_data.py
 

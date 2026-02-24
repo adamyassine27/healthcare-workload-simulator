@@ -57,6 +57,7 @@ Based on peer-reviewed research:
 
 # Clone repository
 git clone https://github.com/adamyassine27/healthcare-workload-simulator.git
+
 cd healthcare-workload-simulator
 
 # Create virtual environment

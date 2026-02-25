@@ -8,9 +8,9 @@ This project combines **Discrete Event Simulation** (rigorous modeling) with **M
 
 ### Key Features
 
-- **Instant Predictions** - ML meta-model predicts in <1ms, much faster than DES
+- **Instant Predictions** - ML meta-model predicts much faster than several DES iterations
 - **Verification System** - Run full DES to validate ML predictions
-- **Interactive Dashboard** - Web-based tool with real-time visualizations
+- **Interactive Dashboard** - Web-based tool with real-time visualizations (graphs)
 - **Smart Recommendations** - Evidence-based staffing and quality improvements
 - **Comprehensive Metrics** - Utilization, missed care, wait times, biomechanical load
 

@@ -10,6 +10,7 @@ import pandas as pd
 import numpy as np
 import sys
 import time
+import os
 
 #Import calculator functions
 from calculator import (
@@ -45,42 +46,42 @@ st.set_page_config(
 )
 
 # Load ML models
+
 @st.cache_resource
 def load_ml_models():
     if not ML_AVAILABLE:
         return None
 
-    model_path = '../ml_models/models.pkl'
+    model_path = os.path.join(os.path.dirname(__file__), '..', 'ml_models', 'models.pkl')
+    model_path = os.path.abspath(model_path)
 
-    # Check if it's a real pickle or just an LFS pointer
+    # Detect LFS pointer
     def is_lfs_pointer(path):
         try:
             with open(path, 'rb') as f:
-                header = f.read(50)
-                return header.startswith(b'version https://git-lfs')
+                return f.read(50).startswith(b'version https://git-lfs')
         except:
             return True
 
-    # Try loading existing model first
+    # Try loading real model
     if os.path.exists(model_path) and not is_lfs_pointer(model_path):
         try:
             return WorkloadMLModels.load(model_path)
-        except:
-            pass
+        except Exception as e:
+            st.warning(f"Could not load model: {e}")
 
-    # Retrain from scratch using training_data.csv
-    st.info(" Training ML models for the first time...")
+    # Retrain from training data
     try:
-        import pandas as pd
-        from ml_models.feature_engineering import engineer_features
+        data_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'training_data.csv')
+        data_path = os.path.abspath(data_path)
 
-        df = pd.read_csv('../data/training_data.csv')
+        df = pd.read_csv(data_path)
         ml = WorkloadMLModels()
         ml.train(df)
         ml.save(model_path)
         return ml
     except Exception as e:
-        st.warning(f"Could not train models: {e}")
+        st.warning(f"ML model training failed: {e}")
         return None
 
 # Title
@@ -526,3 +527,4 @@ st.markdown("""
 **Developed by:** Yassine Adam
 
 """)
+

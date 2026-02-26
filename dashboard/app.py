@@ -46,7 +46,6 @@ except:
     DES_AVAILABLE = False
 
 # Load ML models
-
 @st.cache_resource
 def load_ml_models():
     if not ML_AVAILABLE:
@@ -55,7 +54,6 @@ def load_ml_models():
     model_path = os.path.join(os.path.dirname(__file__), '..', 'ml_models', 'models.pkl')
     model_path = os.path.abspath(model_path)
 
-    # Detect LFS pointer
     def is_lfs_pointer(path):
         try:
             with open(path, 'rb') as f:
@@ -63,25 +61,29 @@ def load_ml_models():
         except:
             return True
 
-    # Try loading real model
+    # Try loading existing real model first
     if os.path.exists(model_path) and not is_lfs_pointer(model_path):
         try:
             return WorkloadMLModels.load(model_path)
         except Exception as e:
             st.warning(f"Could not load model: {e}")
 
-    # Retrain from training data
+    # Retrain from scratch
     try:
+        from ml_models.feature_engineering import prepare_ml_data 
+
         data_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'training_data.csv')
         data_path = os.path.abspath(data_path)
 
         df = pd.read_csv(data_path)
+        X, targets, _ = prepare_ml_data(df) 
+
         ml = WorkloadMLModels()
-        ml.train(df)
+        ml.train(X, targets)
         ml.save(model_path)
         return ml
     except Exception as e:
-        st.warning(f"ML model training failed: {e}")
+        st.error(f"ML model training failed: {e}")
         return None
 
 try:
@@ -533,5 +535,6 @@ st.markdown("""
 **Developed by:** Yassine Adam
 
 """)
+
 
 

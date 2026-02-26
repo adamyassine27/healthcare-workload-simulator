@@ -21,6 +21,13 @@ from calculator import (
     WorkloadCalculator
 )
 
+# Page config
+st.set_page_config(
+    page_title="Healthcare Workload Simulator",
+    page_icon="",
+    layout="wide"
+)
+
 # Import ML models
 sys.path.append('..')
 try:
@@ -37,13 +44,6 @@ try:
     DES_AVAILABLE = True
 except:
     DES_AVAILABLE = False
-
-# Page config
-st.set_page_config(
-    page_title="Healthcare Workload Simulator",
-    page_icon="",
-    layout="wide"
-)
 
 # Load ML models
 
@@ -83,6 +83,12 @@ def load_ml_models():
     except Exception as e:
         st.warning(f"ML model training failed: {e}")
         return None
+
+try:
+    ml_models = load_ml_models()
+except Exception as e:
+    st.error(f"ML load error: {e}")
+    ml_models = None
 
 # Title
 st.title("Healthcare Workload Simulator")
@@ -527,4 +533,5 @@ st.markdown("""
 **Developed by:** Yassine Adam
 
 """)
+
 

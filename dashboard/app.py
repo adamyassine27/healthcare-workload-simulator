@@ -47,14 +47,41 @@ st.set_page_config(
 # Load ML models
 @st.cache_resource
 def load_ml_models():
-    if ML_AVAILABLE:
-        try:
-            return WorkloadMLModels.load('../ml_models/models.pkl')
-        except:
-            return None
-    return None
+    if not ML_AVAILABLE:
+        return None
 
-ml_models = load_ml_models()
+    model_path = '../ml_models/models.pkl'
+
+    # Check if it's a real pickle or just an LFS pointer
+    def is_lfs_pointer(path):
+        try:
+            with open(path, 'rb') as f:
+                header = f.read(50)
+                return header.startswith(b'version https://git-lfs')
+        except:
+            return True
+
+    # Try loading existing model first
+    if os.path.exists(model_path) and not is_lfs_pointer(model_path):
+        try:
+            return WorkloadMLModels.load(model_path)
+        except:
+            pass
+
+    # Retrain from scratch using training_data.csv
+    st.info(" Training ML models for the first time...")
+    try:
+        import pandas as pd
+        from ml_models.feature_engineering import engineer_features
+
+        df = pd.read_csv('../data/training_data.csv')
+        ml = WorkloadMLModels()
+        ml.train(df)
+        ml.save(model_path)
+        return ml
+    except Exception as e:
+        st.warning(f"Could not train models: {e}")
+        return None
 
 # Title
 st.title("Healthcare Workload Simulator")
@@ -497,4 +524,5 @@ st.markdown("""
 - Qureshi, S.M., et al. (2019). "Predicting the effect of Nurse-Patient ratio on Nurse Workload"
 
 **Developed by:** Yassine Adam
+
 """)

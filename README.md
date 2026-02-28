@@ -6,11 +6,11 @@
 
 https://healthcare-workload-simulator-y-adam-neumann.streamlit.app/
 
-## Overview
+# Overview
 
 This project combines **Discrete Event Simulation** (rigorous modeling) with **Machine Learning** (fast predictions) to enable real-time exploration of healthcare staffing scenarios.
 
-### Key Features
+## Key Features
 
 - **Instant Predictions** - ML meta-model predicts much faster than several DES iterations
 - **Verification System** - Run full DES to validate ML predictions
@@ -49,7 +49,7 @@ Based on peer-reviewed research:
 **Speed:** ML predictions much faster than full DE simulation
 
 
-### Dashboard
+## Dashboard
 
 1. Adjust parameters in sidebar (nurses, arrival rate, shift length, acuity)
 2. View instant ML predictions
@@ -57,34 +57,35 @@ Based on peer-reviewed research:
 4. Review recommendations
 
 
-### Installation
+# Installation
 
-# Clone repository
+## Clone repository
 git clone https://github.com/adamyassine27/healthcare-workload-simulator.git
 
 cd healthcare-workload-simulator
 
-# Create virtual environment
+## Create virtual environment
 python -m venv .venv
 
-# Install dependencies
+## Install dependencies
 pip install -r requirements.txt
 
 
-### Quick Start - Full ML Setup (Complete Pipeline) using Python Terminal
-Note - the streamlit page is already trained on a 2,500 scenario size dataset. Skip to step #4 if that is sufficient. The streamlit demo video used a 100,000 scenario size dataset, didn't upload due to file sizes, uploaded the 2,500 size one. Steps 1-3 are to generate the dataset, train it, then validate it. Step 4 is to launch the dashboard locally.
+# Quick Start - Full ML Setup (Complete Pipeline) using Python Terminal
 
-# 1. Generate training data (currently set to 100,000 simulations - ~3hrs - lines 11+143)
+**Note** - The streamlit page is already trained on a 2,500 scenario size dataset. Skip to step #4 if that is sufficient. The streamlit demo video used a 100,000 scenario size dataset, didn't upload due to file sizes, uploaded the 2,500 size one. Steps 1-3 are to generate the dataset, train it, then validate it. Step 4 is to launch the dashboard locally.
+
+## 1. Generate training data (currently set to 100,000 simulations - ~3hrs - lines 11+143)
 cd scripts
 python 01_generate_training_data.py
 
-# 2. Train ML models
+## 2. Train ML models
 python 02_train_ml_models.py
 
-# 3. Validate models
+## 3. Validate models
 python 03_validate_models.py
 
-# 4. Run dashboard with ML
+## 4. Run dashboard with ML
 cd ../dashboard
 
 streamlit run app.py

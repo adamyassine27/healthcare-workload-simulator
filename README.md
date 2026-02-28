@@ -2,6 +2,10 @@
 
 # Healthcare Workload Simulator - Hybrid DES-ML framework for real-time nurse workload analysis and prediction.
 
+## Streamlit Dashboard Link:
+
+https://healthcare-workload-simulator-y-adam-neumann.streamlit.app/
+
 ## Overview
 
 This project combines **Discrete Event Simulation** (rigorous modeling) with **Machine Learning** (fast predictions) to enable real-time exploration of healthcare staffing scenarios.
@@ -68,9 +72,7 @@ pip install -r requirements.txt
 
 
 ### Quick Start - Full ML Setup (Complete Pipeline) using Python Terminal
-## Note - the streamlit page is already trained on a 2,500 scenario size dataset. Skip to step #4 if that is sufficient.
-## The streamlit demo video used a 100,000 scenario size dataset, didn't upload due to file sizes, uploaded the 2,500 size one.
-## Steps 1-3 are to generate the dataset, train it, then validate it.
+Note - the streamlit page is already trained on a 2,500 scenario size dataset. Skip to step #4 if that is sufficient. The streamlit demo video used a 100,000 scenario size dataset, didn't upload due to file sizes, uploaded the 2,500 size one. Steps 1-3 are to generate the dataset, train it, then validate it. Step 4 is to launch the dashboard locally.
 
 # 1. Generate training data (currently set to 100,000 simulations - ~3hrs - lines 11+143)
 cd scripts

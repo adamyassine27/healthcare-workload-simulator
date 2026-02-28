@@ -1,6 +1,7 @@
 **Complete project documentation and goals/summary:**
 
-# Healthcare Workload Simulator - Hybrid DES-ML framework for real-time nurse workload analysis and prediction.
+# Healthcare Workload Simulator
+### Hybrid DES-ML framework for real-time nurse workload analysis and prediction.
 
 ## Streamlit Dashboard Link:
 
@@ -73,10 +74,11 @@ pip install -r requirements.txt
 
 # Quick Start - Full ML Setup (Complete Pipeline) using Python Terminal
 
-**Note** - The streamlit page is already trained on a 2,500 scenario size dataset. Skip to step #4 if that is sufficient. The streamlit demo video used a 100,000 scenario size dataset, didn't upload due to file sizes, uploaded the 2,500 size one. Steps 1-3 are to generate the dataset, train it, then validate it. Step 4 is to launch the dashboard locally.
+**Note** - The streamlit link above is already trained on a 2,500 scenario size dataset (in the ***data*** and ***ml_models*** folders). The streamlit demo video used a 100,000 scenario size dataset, didn't upload it due to the size of the file, uploaded the 2,500 size one instead. 
+**Below** - Steps 1-3 are to generate the dataset, train it, then validate it. Step 4 is to launch the dashboard locally.
 
 ## 1. Generate training data (currently set to 100,000 simulations - ~3hrs - lines 11+143)
-cd scripts
+cd ...\scripts
 python 01_generate_training_data.py
 
 ## 2. Train ML models
@@ -86,7 +88,7 @@ python 02_train_ml_models.py
 python 03_validate_models.py
 
 ## 4. Run dashboard with ML
-cd ../dashboard
+cd ...\dashboard
 
 streamlit run app.py
 

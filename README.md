@@ -99,5 +99,5 @@ streamlit run app.py
 
 ## Acknowledgments
 
-- Prof. W. Patrick Neumann (TMU HFE Lab) - Research methodology
+- Prof. W. Patrick Neumann - Research methodology
 - Qureshi et al. - DES implementation guidance

@@ -3,6 +3,7 @@
 # Healthcare Workload Simulator
 **Hybrid DES-ML framework for real-time nurse workload analysis and prediction.**
 
+Vide Demo: https://youtu.be/H6dDDkhNE-Q
 # Overview
 
 This project combines **Discrete Event Simulation** (rigorous modeling) with **Machine Learning** (fast predictions) to enable real-time exploration of healthcare staffing scenarios.
